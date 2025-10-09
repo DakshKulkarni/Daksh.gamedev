@@ -4,307 +4,327 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daksh Kulkarni — Game & VR Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Loading Screen -->
-  <div class="loader" id="loader">
-    <div class="loader-text">Loading Portfolio...</div>
+<body class="gated">
+
+  <!-- START GATE (retro boot screen) -->
+  <div id="start-gate">
+    <div class="scanlines"></div>
+
+    <div class="boot-panel">
+      <div class="boot-messages" aria-live="polite">
+        <p>› Initializing portfolio...</p>
+        <p>› Loading Unity systems...</p>
+        <p>› Preparing XR interaction modules...</p>
+        <p>› Establishing render pipeline...</p>
+        <p>› Mounting assets & UI layers...</p>
+        <p class="ready">› SYSTEM READY.</p>
+      </div>
+
+      <!-- EXTRA SPACE between panel and button (as requested) -->
+      <div class="boot-gap"></div>
+
+      <button id="press-start" class="press-start" aria-label="Press Start">
+        PRESS START
+      </button>
+
+      <!-- (Optional) direct resume on the gate too -->
+      <a class="gate-resume" href="Daksh Resume(sep25).pdf" target="_blank" rel="noopener">
+        Download Resume
+      </a>
+    </div>
   </div>
 
-  <!-- Animated Background -->
-  <div class="particles" id="particles"></div>
+  <!-- Cursor trail canvas (sits above everything, pointer-events:none) -->
+  <canvas id="cursor-trail"></canvas>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-container">
-      <div class="logo">Daksh Kulkarni</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <!-- SITE WRAPPER (hidden until START is pressed) -->
+  <div id="site" class="site hidden">
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="brand">Daksh Kulkarni</div>
+        <ul class="links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="resume-btn" href="Daksh Resume(sep25).pdf" target="_blank" rel="noopener">Download Resume</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="section hero">
+      <div class="hero-inner">
+        <h1 class="glow-title">Game & VR Developer</h1>
+        <p class="tagline">Unity • XR Interaction • Mixed Reality • Meta-all-in-1 SDK</p>
+
+        <div class="badges">
+          <span>Research projects × 2</span>
+          <span>Next Tech Lab — Syndicate</span>
+          <span>Hosting Game Jams & Hackathons</span>
+        </div>
+
+        <div class="cta-row">
+          <a href="#projects" class="btn primary">See Projects</a>
+          <a href="Daksh Resume(sep25).pdf" target="_blank" rel="noopener" class="btn ghost">
+            Download Resume
+          </a>
+        </div>
+
+    
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="Daksh.jpg" alt="Daksh Kulkarni">
+        </div>
+        <div class="about-text">
+          <p>Hey! I'm Daksh Kulkarni, a final-year B.Tech CS student, a game & VR developer. My game-dev journey kicked off after playing <em>Uncharted 4</em>. The pacing, story line, and combat sequences made me obsessed with how games create that “feel.” The curiosity turned into an actual pursuable interest, lab sessions, and lots of Unity projects.</p>
+          <p>During my time at SRM University (AP) and a semester at UC Berkeley’s SCET, I focused on interesting game ideas with the game dev club at Berkeley and also developed interesting 2 multiplayer experiences. I’ve led and participated in game jams, organized lab events, ranging from 2D & 3D to mixed reality.</p>
+          <p>My interests: immersive input-based experiences, tampering of external influences  (camera shake / audio), networked transforms, and MR interactions that feel intuitive. I love to make voice input based games, it feels more immersive, especially in XR.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <h2 class="section-title">Skills & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <img src="Unity.png" alt="Unity">
+          <div class="skill-name">Unity</div>
+          <div class="skill-desc">2D/3D, physics, UI, XR</div>
+        </div>
+        <div class="skill-card">
+          <img src="Csharp.png" alt="C#">
+          <div class="skill-name">C#</div>
+          <div class="skill-desc">Gameplay mechanics, architecture</div>
+        </div>
+        <div class="skill-card">
+          <img src="Blender.png" alt="Blender">
+          <div class="skill-name">Blender</div>
+          <div class="skill-desc">Simple assets, animations</div>
+        </div>
+        <div class="skill-card">
+          <img src="Thirdweb.png" alt="Thirdweb">
+          <div class="skill-name">Thirdweb</div>
+          <div class="skill-desc">Wallet integration, NFT minting</div>
+        </div>
+        <div class="skill-card">
+          <img src="Github.png" alt="GitHub Desktop">
+          <div class="skill-name">GitHub Desktop</div>
+          <div class="skill-desc">Source control, collab workflows</div>
+        </div>
+        <div class="skill-card">
+          <img src="Meta.png" alt="XR">
+          <div class="skill-name">XR</div>
+          <div class="skill-desc">Meta all-in-1 SDK, Building Blocks</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS (zig-zag with hover details on title) -->
+<section id="projects" class="section">
+  <h2 class="section-title">Featured Projects</h2>
+
+  <div class="projects-list">
+
+    <!-- VR Carnival -->
+    <div class="project-row">
+      <a class="project-card" href="https://ethglobal.com/showcase/vr-carnival-098z4" target="_blank">
+        <div class="media">
+          <img src="Carnival.png" alt="VR Carnival" />
+          <div class="view-overlay"><span>View Project</span></div>
+        </div>
+        <div class="content">
+          <h3 class="project-title">VR Carnival</h3>
+          <p>Mini-games collection with joy-ride experiences and VR UI interactions.</p>
+          <div class="tags">
+            <span>Unity 3D</span><span>C#</span><span>Meta all in 1 SDK</span><span>Kotlin</span>
+          </div>
+        </div>
+      </a>
+
+      <aside class="project-info">
+        <h4>What I built</h4>
+        <ul>
+          <li>2 interactive mini-games</li>
+          <li>Immersive Joy rides for players</li>
+          <li>Setting up UI canvas for VR controllers</li>
+        </ul>
+        <h4>My role</h4>
+        <ul>
+          <li>VR interaction design</li>
+          <li>UI/UX implementation</li>
+          <li>Bridge between smart contract and the game</li>
+        </ul>
+      </aside>
     </div>
-  </nav>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Game & VR Developer</h1>
-      <p class="hero-subtitle">Unity • XR Interaction • Mixed Reality • Multiplayer prototyping</p>
+    <!-- SCP Maze Runner -->
+    <div class="project-row reverse">
+      <a class="project-card" href="https://github.com/DakshKulkarni/Claustrophobia" target="_blank">
+        <div class="media">
+          <img src="SCP.png" alt="SCP Maze Runner" />
+          <div class="view-overlay"><span>View Project</span></div>
+        </div>
+        <div class="content">
+          <h3 class="project-title">SCP Maze Runner</h3>
+          <p>VR horror with flickering lights & positional AI that chases when provoked.</p>
+          <div class="tags">
+            <span>Unity 3D</span><span>C#</span><span>XR Interaction Toolkit</span>
+          </div>
+        </div>
+      </a>
 
-      <div class="hero-badges">
-        <span class="badge">Involved in 2+ VR research projects</span>
-        <span class="badge">Syndicate at Next Tech Lab</span>
-        <span class="badge">Hosting Game Jams and Hackathons</span>
-      </div>
-
-      <div class="hero-cta">
-        <a href="#projects" class="cta-button">See Projects</a>
-        <a href="Daksh's resume.pdf" class="cta-button outline" target="_blank" rel="noopener">Download Resume</a>
-      </div>
-
-      <div class="hero-socials">
-        <a href="mailto:dakshkulki04@gmail.com" aria-label="Email"><img src="Gmail.png" alt="Email"></a>
-        <a href="https://linkedin.com/in/daksh-kulkarni-425476253/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="Linkedin.png" alt="LinkedIn"></a>
-        <a href="https://github.com/DakshKulkarni" target="_blank" rel="noopener" aria-label="GitHub"><img src="Github.png" alt="GitHub"></a>
-      </div>
+      <aside class="project-info">
+        <h4>What I built</h4>
+        <ul>
+          <li>Dynamic lighting & audio atmosphere</li>
+          <li>AI movement and trigger reactions</li>
+          <li>Chase mechanics & player feedback</li>
+        </ul>
+        <h4>My role</h4>
+        <ul>
+          <li>VR interaction mechanics design</li>
+          <li>Character movement</li>
+          <li>AI behaviour handling</li>
+        </ul>
+      </aside>
     </div>
-  </section>
 
-  <!-- About -->
-  <section id="about" class="section reveal">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-content">
-      <div class="about-image">
-        <!-- put your photo here: /images/Daksh.jpg -->
-        <img src="Daksh.jpg" alt="Daksh Kulkarni" />
-      </div>
-      <div class="about-text">
-        <p>Hey! I’m Daksh Kulkarni, a final-year B.Tech CS student who fell in love with building interactive worlds. My game-dev journey kicked off after playing <em>Uncharted 4</em>—the pacing, set pieces, and tactile traversal made me obsessed with how games create “feel.” That curiosity turned into prototypes, lab sessions, and lots of Unity scenes.</p>
-        <br/>
-        <p>During my time at SRM University (AP) and a semester at UC Berkeley’s SCET, I focused on gameplay systems, XR interaction patterns, and playful UI. I enjoy fast iteration: graybox → input feel → moment-to-moment loops → polish. I’ve led and participated in game jams, organized lab events, and shipped projects spanning mobile, 3D, and mixed reality.</p>
-        <br/>
-        <p>Interests: input-first design, feedback loops (camera shake / haptics / audio), networked transforms, and MR interactions that feel intuitive. When I’m not coding, I’m testing mechanics, tinkering with shaders, or sketching UX for the next prototype.</p>
-      </div>
+    <!-- Valak -->
+    <div class="project-row">
+      <a class="project-card" href="https://devfolio.co/projects/valak-82b3" target="_blank">
+        <div class="media">
+          <img src="image.png" alt="Valak" />
+          <div class="view-overlay"><span>View Project</span></div>
+        </div>
+        <div class="content">
+          <h3 class="project-title">Valak (NFT Horror)</h3>
+          <p>Collect hidden shards with limited FOV; wallet + token mechanics unlock NFTs.</p>
+          <div class="tags">
+            <span>Unity 3D</span><span>C#</span><span>Thirdweb</span><span>Solidity</span>
+          </div>
+        </div>
+      </a>
+
+      <aside class="project-info">
+        <h4>What I built</h4>
+        <ul>
+          <li>Dynamic speed tension loop</li>
+          <li>Collectible (token pipeline)</li>
+          <li>Metamask onboarding</li>
+        </ul>
+        <h4>My role</h4>
+        <ul>
+          <li>Gameplay systems & wallet integration</li>
+          <li>Thirdweb–Unity setup & UX polish</li>
+          <li>Setting up the game scene</li>
+        </ul>
+      </aside>
     </div>
-  </section>
 
-  <!-- Skills -->
-  <section id="skills" class="section reveal">
-    <h2 class="section-title">Skills & Technologies</h2>
+    <!-- CryptFlesh -->
+    <div class="project-row reverse">
+      <a class="project-card" href="https://github.com/DakshKulkarni/first" target="_blank">
+        <div class="media">
+          <img src="Crypt.png" alt="CryptFlesh" />
+          <div class="view-overlay"><span>View Project</span></div>
+        </div>
+        <div class="content">
+          <h3 class="project-title">CryptFlesh (NFT Zombie Survival)</h3>
+          <p>Waves, weapons, and full-on apocalypse survival gameplay.</p>
+          <div class="tags">
+            <span>Unity 3D</span><span>C#</span><span>Thirdweb</span><span>Solidity</span>
+          </div>
+        </div>
+      </a>
 
-    <div class="skills-grid logos">
-      <!-- 1: Unity -->
-      <div class="skill-card">
-        <img class="skill-logo" src="Unity.png" alt="Unity">
-        <div class="skill-name">Unity</div>
-        <div class="skill-description">2D/3D, physics, UI, editor tooling</div>
-      </div>
-
-      <!-- 2: Meta / XR -->
-      <div class="skill-card">
-        <img class="skill-logo" src="Meta.png" alt="Meta XR">
-        <div class="skill-name">Meta XR</div>
-        <div class="skill-description">All-in-One SDK, XR Interaction Toolkit</div>
-      </div>
-
-      <!-- 3: C# -->
-      <div class="skill-card">
-        <img class="skill-logo" src="Csharp.png" alt="C#">
-        <div class="skill-name">C#</div>
-        <div class="skill-description">Gameplay systems, architecture</div>
-      </div>
-
-      <!-- 4: Blender -->
-      <div class="skill-card">
-        <img class="skill-logo" src="Blender.png" alt="Blender">
-        <div class="skill-name">Blender</div>
-        <div class="skill-description">Blockouts, simple assets, renders</div>
-      </div>
-
-      <!-- 5: Thirdweb -->
-      <div class="skill-card">
-        <img class="skill-logo" src="Thirdweb.png" alt="Thirdweb">
-        <div class="skill-name">Thirdweb</div>
-        <div class="skill-description">Wallets, token-gating, NFT flows</div>
-      </div>
-
-      <!-- 6: GitHub Desktop -->
-      <div class="skill-card">
-        <img class="skill-logo" src="Git.png" alt="Git">
-        <div class="skill-name">GitHub Desktop</div>
-        <div class="skill-description">Source control, collab workflows</div>
-      </div>
+      <aside class="project-info">
+        <h4>What I built</h4>
+        <ul>
+          <li>Player animation using blend trees</li>
+          <li>Player movement and health bar</li>
+          <li>Wallet integration</li>
+        </ul>
+        <h4>My role</h4>
+        <ul>
+          <li>Gameplay loop</li>
+          <li>Zombie damage & horde management</li>
+          <li>Animation system</li>
+        </ul>
+      </aside>
     </div>
-  </section>
 
-  <!-- Projects (Zig-zag layout preserved) -->
-  <section id="projects" class="section reveal">
-    <h2 class="section-title">Featured Projects</h2>
-
-    <div class="projects-list">
-      <!-- Row 1 -->
-      <div class="project-row">
-        <div class="project-card">
-          <div class="project-media">
-            <img src="image.png" alt="Valak screenshot" class="project-img">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Valak (NFT Horror)</h3>
-            <p class="project-description">Horror-themed NFT game: collect hidden shards with limited FOV; wallet + token mechanics to unlock NFTs via gameplay.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Unity 3D</span><span class="tech-tag">C#</span>
-              <span class="tech-tag">Solidity</span><span class="tech-tag">Thirdweb</span>
-            </div>
-            <div class="project-links">
-              <a href="https://devfolio.co/projects/valak-82b3" class="project-link rippleable" target="_blank" rel="noopener">Project Page</a>
-            </div>
+    <!-- Thanos Simulator -->
+    <div class="project-row">
+      <a class="project-card" href="https://wombatty.itch.io/avenge-infinite-war" target="_blank">
+        <div class="media">
+          <img src="Thanos.png" alt="Thanos Simulator" />
+          <div class="view-overlay"><span>View Project</span></div>
+        </div>
+        <div class="content">
+          <h3 class="project-title">Thanos Simulator</h3>
+          <p>Planet-wise gravity with rocket movement and per-planet time bomb.</p>
+          <div class="tags">
+            <span>Unity 2D</span><span>C#</span>
           </div>
         </div>
+      </a>
 
-        <aside class="project-details">
-          <h4>What we built</h4>
-          <ul>
-            <li>Player movement behaviour that increases the tension of the player as the speed is dynamic. </li>
-            <li>Collectibles to signify the token collection and all the other behaviour after collection.</li>
-            <li>Metamask Wallet integration in the beginning of the game.</li>
-          </ul>
-          <h4>My role</h4>
-          <ul><li>Gameplay systems, wallet integration, UX polish.</li>
-          <li>The integration of thirdweb and Unity and all setting up the gameobjects in the scene.</li>
-          </ul>
-
-        </aside>
-      </div>
-
-      <!-- Row 2 -->
-      <div class="project-row">
-        <div class="project-card">
-          <div class="project-media">
-            <img src="Thanos.png" alt="Thanos Simulator screenshot" class="project-img">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Thanos Simulator</h3>
-            <p class="project-description">Planet-wise gravity with rocket movement; per-planet time bar showing remaining time.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Unity 2D</span><span class="tech-tag">C#</span><span class="tech-tag">Physics</span>
-            </div>
-            <div class="project-links">
-              <a href="https://wombatty.itch.io/avenge-infinite-war" class="project-link rippleable" target="_blank" rel="noopener">Itch.io</a>
-            </div>
-          </div>
-        </div>
-
-        <aside class="project-details">
-          <h4>What I built</h4>
-          <ul>
-            <li>Custom gravity per planet; momentum-aware controls.</li>
-            <li>Readable HUD/timebars for tight feedback.</li>
-          </ul>
-          <h4>My role</h4>
-          <ul><li>Core physics + UI feedback systems.</li></ul>
-        </aside>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="project-row">
-        <div class="project-card">
-          <div class="project-media">
-            <img src="Infinite.png" alt="Infinite Runner Shooter screenshot" class="project-img">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Infinite Runner Shooter</h3>
-            <p class="project-description">Dynamic FPS runner with increasing speed/enemy density; coin rewards scale difficulty.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Unity 3D</span><span class="tech-tag">C#</span>
-              <span class="tech-tag">Gameplay</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/DakshKulkarni/Infinite-Runner-Shooting" class="project-link rippleable" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <aside class="project-details">
-          <h4>What I built</h4>
-          <ul>
-            <li>Lane gen, enemy spawners, difficulty scaler tied to coins.</li>
-            <li>Juice: camera shake, SFX hooks, score multipliers.</li>
-          </ul>
-          <h4>My role</h4>
-          <ul><li>Systems, feel, and balancing passes.</li></ul>
-        </aside>
-      </div>
-
-      <!-- Row 4 -->
-      <div class="project-row">
-        <div class="project-card">
-          <div class="project-media">
-            <img src="Lifestyle.png" alt="ViewKia MR screenshot" class="project-img">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">ViewKia (MR voice + multiplayer)</h3>
-            <p class="project-description">Spawn furniture in MR and recolor via voice; multiplayer sync for co-design.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Unity 3D</span><span class="tech-tag">C#</span>
-              <span class="tech-tag">Meta All-in-1 SDK</span><span class="tech-tag">Gemini API</span>
-            </div>
-            <div class="project-links">
-              <a href="https://devpost.com/software/viewkea-nrld5c?ref_content=my-projects-tab&ref_feature=my_projects" class="project-link rippleable" target="_blank" rel="noopener">Devpost</a>
-            </div>
-          </div>
-        </div>
-
-        <aside class="project-details">
-          <h4>What I built</h4>
-          <ul>
-            <li>Voice intents → object spawn/recolor; networked transforms.</li>
-            <li>Controller + voice UX, collision + bounds checks.</li>
-          </ul>
-          <h4>My role</h4>
-          <ul><li>Input plumbing, MR interactions, networking.</li></ul>
-        </aside>
-      </div>
-
-      <!-- Row 5 -->
-      <div class="project-row">
-        <div class="project-card">
-          <div class="project-media">
-            <img src="Crypt.png" alt="CryptFlesh screenshot" class="project-img">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">CryptFlesh (NFT Zombie Survival)</h3>
-            <p class="project-description">Third-person survival with waves; NFT drops for milestones, menu + HUD polish.</p>
-            <div class="project-tech">
-              <span class="tech-tag">Unity 3D</span><span class="tech-tag">C#</span>
-              <span class="tech-tag">Thirdweb</span><span class="tech-tag">Solidity</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/DakshKulkarni/first" class="project-link rippleable" target="_blank" rel="noopener">GitHub</a>
-            </div>
-          </div>
-        </div>
-
-        <aside class="project-details">
-          <h4>What I built</h4>
-          <ul>
-            <li>Wave spawner, weapon feel loop, drop tables → NFT mints.</li>
-          </ul>
-          <h4>My role</h4>
-          <ul><li>Gameplay loop + mint integration.</li></ul>
-        </aside>
-      </div>
+      <aside class="project-info">
+        <h4>What I built</h4>
+        <ul>
+          <li>Custom gravity per planet</li>
+          <li>Seamless controls & readable HUD</li>
+          <li>Time-bomb per planet</li>
+        </ul>
+        <h4>My role</h4>
+        <ul>
+          <li>Core physics behind the game</li>
+          <li>Planet movement logic</li>
+          <li>Health and game over logic</li>
+        </ul>
+      </aside>
     </div>
-  </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section reveal">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="contact-content">
-      <p>Open to collabs, internships, and game/XR experiments.</p>
-      <div class="contact-info">
-        <div class="contact-item">
-          <img src="Gmail.png" alt="Email" class="contact-icon">
-          <div class="contact-label">Email</div>
-          <div class="contact-value"><a href="mailto:dakshkulki04@gmail.com">dakshkulki04@gmail.com</a></div>
-        </div>
-        <div class="contact-item">
-          <img src="Linkedin.png" alt="LinkedIn" class="contact-icon">
-          <div class="contact-label">LinkedIn</div>
-          <div class="contact-value"><a href="https://linkedin.com/in/daksh-kulkarni-425476253/" target="_blank">@daksh-kulkarni</a></div>
-        </div>
-        <div class="contact-item">
-          <img src="Github.png" alt="GitHub" class="contact-icon">
-          <div class="contact-label">GitHub</div>
-          <div class="contact-value"><a href="https://github.com/DakshKulkarni" target="_blank">@DakshKulkarni</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <script defer src="app.js"></script>
+<section id="contact" class="contact-section">
+  <h1>Get In Touch</h1>
+  <div class="contact-grid">
+
+    <a href="mailto:dakshkulki04@gmail.com" target="_blank" class="contact-card">
+      <img src="Gmail.png" alt="Email" class="contact-icon" />
+      <span>Email</span>
+    </a>
+
+    <a href="https://linkedin.com/in/daksh-kulkarni-425476253/" target="_blank" class="contact-card">
+      <img src="Linkedin.png" alt="LinkedIn" class="contact-icon" />
+      <span>LinkedIn</span>
+    </a>
+
+    <a href="https://github.com/DakshKulkarni" target="_blank" class="contact-card">
+      <img src="Github.png" alt="GitHub" class="contact-icon" />
+      <span>GitHub</span>
+    </a>
+
+  </div>
+</section>
+
+  <img id="rocketCursor" src="rocketcur.png" alt="cursor">
+  <script src="app.js" defer></script>
 </body>
 </html>

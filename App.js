@@ -1,106 +1,102 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Loading screen
-  window.addEventListener('load', () => {
-    const loader = document.getElementById('loader');
-    if (loader) {
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => (loader.style.display = 'none'), 500);
-      }, 800);
-    }
+/* ===== START GATE ===== */
+const gate = document.getElementById('start-gate');
+const press = document.getElementById('press-start');
+const site = document.getElementById('site');
+
+if (press) {
+  press.addEventListener('click', () => {
+    // zoom/fade the gate
+    gate.classList.add('gate-close');
+
+    // after animation, hide gate and reveal site
+    setTimeout(() => {
+      gate.style.display = 'none';
+      site.classList.remove('hidden');
+      site.classList.add('reveal-site');
+      document.body.classList.remove('gated');
+    }, 900);
   });
+}
 
-  // Particles
-  (function createParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
-    const count = 50;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.left = Math.random() * 100 + '%';
-      p.style.animationDelay = Math.random() * 15 + 's';
-      p.style.animationDuration = 15 + Math.random() * 10 + 's';
-      container.appendChild(p);
-    }
-  })();
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener('click', (e) => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.scrollIntoView({behavior:'smooth', block:'start'});
       }
-    });
+    }
+  });
+});
+
+/* ===== HOVER TITLE -> SHOW INFO PANEL (scroll into view on mobile) ===== */
+document.querySelectorAll('.project-title').forEach(title => {
+  const sel = title.getAttribute('data-info');
+  const panel = sel ? document.querySelector(sel) : null;
+  if (!panel) return;
+
+  title.addEventListener('mouseenter', () => panel.classList.add('hover'));
+  title.addEventListener('mouseleave', () => panel.classList.remove('hover'));
+  // On mobile tap: scroll to panel
+  title.addEventListener('click', e => {
+    if (matchMedia('(hover:none)').matches) {
+      e.preventDefault();
+      panel.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+});
+
+// === Custom pixel rocket cursor with purple smoke ===
+const rocket = document.getElementById("rocketCursor");
+const smokeCanvas = document.createElement("canvas");
+const ctx = smokeCanvas.getContext("2d");
+
+smokeCanvas.width = window.innerWidth;
+smokeCanvas.height = window.innerHeight;
+smokeCanvas.style.position = "fixed";
+smokeCanvas.style.top = "0";
+smokeCanvas.style.left = "0";
+smokeCanvas.style.pointerEvents = "none";
+smokeCanvas.style.zIndex = "9999";
+document.body.appendChild(smokeCanvas);
+
+let mouseX = 0, mouseY = 0;
+let smokeParticles = [];
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+
+  rocket.style.left = mouseX - 16 + "px";
+  rocket.style.top = mouseY - 16 + "px";
+
+  smokeParticles.push({ x: mouseX, y: mouseY, alpha: 1, size: Math.random() * 6 + 3 });
+});
+
+function drawSmoke() {
+  ctx.clearRect(0, 0, smokeCanvas.width, smokeCanvas.height);
+
+  smokeParticles.forEach((p) => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y + 20, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(186, 85, 255, ${p.alpha})`;
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = "#ba55ff";
+    ctx.fill();
+    p.y += 0.5;
+    p.alpha -= 0.02;
   });
 
-  // Scroll reveal
-  const opts = { threshold: 0.12, rootMargin: '0px 0px -50px 0px' };
-  const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, opts) : null;
+  smokeParticles = smokeParticles.filter((p) => p.alpha > 0);
+  requestAnimationFrame(drawSmoke);
+}
 
-  if (io) document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-  else document.querySelectorAll('.reveal').forEach((el) => el.classList.add('fade-in'));
+drawSmoke();
 
-  // Navbar tint on scroll
-  const nav = document.querySelector('nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.style.background = window.scrollY > 100 ? 'rgba(10,10,10,0.95)' : 'rgba(10,10,10,0.9)';
-    });
-  }
-
-  // Typing effect
-  const heroTitle = document.querySelector('.hero-content h1');
-  if (heroTitle) {
-    const txt = heroTitle.textContent || '';
-    heroTitle.textContent = '';
-    let i = 0;
-    const type = () => {
-      if (i < txt.length) {
-        heroTitle.textContent += txt.charAt(i++);
-        setTimeout(type, 80);
-      }
-    };
-    setTimeout(type, 900);
-  }
-
-  // Ripple effect
-  const addRipple = (el) => {
-    el.addEventListener('click', (e) => {
-      const rect = el.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const span = document.createElement('span');
-      span.className = 'ripple';
-      span.style.width = span.style.height = size + 'px';
-      span.style.left = e.clientX - rect.left - size / 2 + 'px';
-      span.style.top = e.clientY - rect.top - size / 2 + 'px';
-      el.appendChild(span);
-      setTimeout(() => span.remove(), 600);
-    });
-  };
-  document.querySelectorAll('.cta-button, .project-link').forEach(addRipple);
-
-  // Inject ripple keyframes
-  const style = document.createElement('style');
-  style.textContent = `
-    .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,.3);
-      transform: scale(0);
-      animation: ripple .6s ease-out forwards;
-      pointer-events: none;
-    }
-    @keyframes ripple { to { transform: scale(2); opacity: 0; } }
-  `;
-  document.head.appendChild(style);
+window.addEventListener("resize", () => {
+  smokeCanvas.width = window.innerWidth;
+  smokeCanvas.height = window.innerHeight;
 });
