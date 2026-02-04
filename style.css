@@ -125,18 +125,23 @@ body{
 }
 
 /* ========== NAV (final stable fix) ========== */
-.nav {
-  position: sticky;
+:root { --nav-h: 74px; }  /* adjust if needed */
+
+.nav{
+  position: fixed;          /* IMPORTANT: fixed, not sticky */
   top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
   z-index: 2000;
-  width: 100%;
+
   background: rgba(12, 14, 25, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(80, 90, 150, 0.4);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-
-.nav-inner {
+.nav-inner{
+  height: var(--nav-h);
   max-width: 1200px;
   margin: 0 auto;
   padding: 14px 20px;
@@ -144,6 +149,23 @@ body{
   justify-content: space-between;
   align-items: center;
 }
+/* push page content below fixed nav */
+#site { padding-top: var(--nav-h); }
+
+/* when you click Home/About/Skills etc, headings won't hide under nav */
+.section, .contact-section { scroll-margin-top: calc(var(--nav-h) + 18px); }
+
+/* hero should fill the visible area below the nav */
+:root { --nav-h: 74px; }
+
+#site { padding-top: var(--nav-h); }
+
+.hero{
+  min-height: calc(100vh - var(--nav-h));
+  padding-top: 110px;     /* keeps CTA away from nav */
+  padding-bottom: 120px;  /* prevents the "stuck at bottom" feeling */
+}
+
 
 .brand {
   font-weight: 800;
@@ -569,5 +591,45 @@ body{
   .tags {
     justify-content: center;
   }
+  /* ===== Scroll progress bar ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  z-index: 5000;
+  background: linear-gradient(90deg, #9c4dff, #6a00f4);
+  box-shadow: 0 0 18px rgba(156, 77, 255, 0.65);
+}
+
+/* ===== Reveal base ===== */
+.reveal{
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(8px);
+  will-change: transform, opacity, filter;
+}
+
+/* ===== Glow behind active sections ===== */
+.section-glow{
+  position: relative;
+}
+.section-glow::before{
+  content:"";
+  position:absolute;
+  inset:-40px -20px;
+  background: radial-gradient(420px 220px at 50% 20%, rgba(156,77,255,.18), transparent 70%);
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity .4s ease, transform .4s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+.section-glow.active::before{
+  opacity: 1;
+  transform: scale(1);
+}
+
+
 }
 

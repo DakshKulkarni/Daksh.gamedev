@@ -4,13 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daksh Kulkarni — Game & VR Developer</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="gated">
 
-  <!-- START GATE (retro boot screen) -->
+<body class="gated">
+  <!-- scroll progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- START GATE -->
   <div id="start-gate">
     <div class="scanlines"></div>
 
@@ -24,25 +29,24 @@
         <p class="ready">› SYSTEM READY.</p>
       </div>
 
-      <!-- EXTRA SPACE between panel and button (as requested) -->
       <div class="boot-gap"></div>
 
       <button id="press-start" class="press-start" aria-label="Press Start">
         PRESS START
       </button>
 
-      <!-- (Optional) direct resume on the gate too -->
       <a class="gate-resume" href="Daksh's resume(Feb26).pdf" target="_blank" rel="noopener">
         Download Resume
       </a>
     </div>
   </div>
 
-  <!-- Cursor trail canvas (sits above everything, pointer-events:none) -->
+  <!-- smoke canvas -->
   <canvas id="cursor-trail"></canvas>
 
-  <!-- SITE WRAPPER (hidden until START is pressed) -->
+  <!-- SITE -->
   <div id="site" class="site hidden">
+
     <!-- NAV -->
     <nav class="nav">
       <div class="nav-inner">
@@ -72,12 +76,8 @@
 
         <div class="cta-row">
           <a href="#projects" class="btn primary">See Projects</a>
-          <a href="Daksh's resume(Feb26).pdf" target="_blank" rel="noopener" class="btn ghost">
-            Download Resume
-          </a>
+          <a href="Daksh's resume(Feb26).pdf" target="_blank" rel="noopener" class="btn ghost">Download Resume</a>
         </div>
-
-    
       </div>
     </section>
 
@@ -89,9 +89,9 @@
           <img src="Daksh.jpg" alt="Daksh Kulkarni">
         </div>
         <div class="about-text">
-          <p>Hey! I'm Daksh Kulkarni, a final-year B.Tech CS student, a game & VR developer. My game-dev journey kicked off after playing <em>Uncharted 4</em>. The pacing, story line, and combat sequences made me obsessed with how games create that “feel.” The curiosity turned into an actual pursuable interest, lab sessions, and lots of Unity projects.</p>
-          <p>During my time at SRM University (AP) and a semester at UC Berkeley’s SCET, I focused on interesting game ideas with the game dev club at Berkeley and also developed interesting 2 multiplayer experiences. I’ve led and participated in game jams, organized lab events, ranging from 2D & 3D to mixed reality.</p>
-          <p>My interests: immersive input-based experiences, tampering of external influences  (camera shake / audio), networked transforms, and MR interactions that feel intuitive. I love to make voice input based games, it feels more immersive, especially in XR.</p>
+          <p>Hey! I'm Daksh Kulkarni, a final-year B.Tech CS student, a game & VR developer. My game-dev journey kicked off after playing <em>Uncharted 4</em>. The pacing, story line, and combat sequences made me obsessed with how games create that “feel.”</p>
+          <p>During my time at SRM University (AP) and a semester at UC Berkeley’s SCET, I focused on game ideas, multiplayer experiences, and XR prototypes. I’ve led and participated in game jams and organized lab events.</p>
+          <p>My interests: immersive input-based experiences, camera/audio influence, networked transforms, and MR interactions that feel intuitive.</p>
         </div>
       </div>
     </section>
@@ -133,198 +133,239 @@
       </div>
     </section>
 
-    <!-- PROJECTS (zig-zag with hover details on title) -->
-<section id="projects" class="section">
-  <h2 class="section-title">Featured Projects</h2>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <h2 class="section-title">Featured Projects</h2>
 
-  <div class="projects-list">
+      <div class="projects-list">
 
-    <!-- VR Carnival -->
-    <div class="project-row">
-      <a class="project-card" href="https://ethglobal.com/showcase/vr-carnival-098z4" target="_blank">
-        <div class="media">
-          <img src="Carnival.png" alt="VR Carnival" />
-          <div class="view-overlay"><span>View Project</span></div>
+        <!-- VR Carnival -->
+        <div class="project-row">
+          <a class="project-card" href="https://ethglobal.com/showcase/vr-carnival-098z4" target="_blank" rel="noopener">
+            <div class="media">
+              <img src="Carnival.png" alt="VR Carnival" />
+              <div class="view-overlay"><span>View Project</span></div>
+            </div>
+            <div class="content">
+              <h3 class="project-title">VR Carnival</h3>
+              <p>Mini-games collection with joy-ride experiences and VR UI interactions.</p>
+              <div class="tags">
+                <span>Unity 3D</span><span>C#</span><span>Meta all in 1 SDK</span><span>Kotlin</span>
+              </div>
+            </div>
+          </a>
+
+          <aside class="project-info">
+            <h4>What I built</h4>
+            <ul>
+              <li>2 interactive mini-games</li>
+              <li>Immersive joy rides</li>
+              <li>VR UI canvas for controllers</li>
+            </ul>
+            <h4>My role</h4>
+            <ul>
+              <li>VR interaction design</li>
+              <li>UI/UX implementation</li>
+              <li>Bridge between smart contract and game</li>
+            </ul>
+          </aside>
         </div>
-        <div class="content">
-          <h3 class="project-title">VR Carnival</h3>
-          <p>Mini-games collection with joy-ride experiences and VR UI interactions.</p>
-          <div class="tags">
-            <span>Unity 3D</span><span>C#</span><span>Meta all in 1 SDK</span><span>Kotlin</span>
-          </div>
+
+        <!-- ViewKia -->
+        <div class="project-row reverse">
+          <a class="project-card" href="https://devpost.com/software/viewkea-nrld5c?ref_content=my-projects-tab&ref_feature=my_projects" target="_blank" rel="noopener">
+            <div class="media">
+              <img src="Lifestyle.png" alt="ViewKia" />
+              <div class="view-overlay"><span>View Project</span></div>
+            </div>
+            <div class="content">
+              <h3 class="project-title">ViewKia</h3>
+              <p>Multiplayer mixed-reality furniture spawner with voice-based color control.</p>
+              <div class="tags">
+                <span>Unity 3D</span><span>C#</span><span>Meta all in 1 SDK</span><span>MR</span>
+              </div>
+            </div>
+          </a>
+
+          <aside class="project-info">
+            <h4>What I built</h4>
+            <ul>
+              <li>Real-time furniture spawning in MR</li>
+              <li>Voice-driven color changes</li>
+              <li>Multiplayer interaction flow</li>
+            </ul>
+            <h4>My role</h4>
+            <ul>
+              <li>Core MR systems + UI logic</li>
+              <li>Voice input pipeline integration</li>
+              <li>Gameplay interaction implementation</li>
+            </ul>
+          </aside>
         </div>
-      </a>
 
-      <aside class="project-info">
-        <h4>What I built</h4>
-        <ul>
-          <li>2 interactive mini-games</li>
-          <li>Immersive Joy rides for players</li>
-          <li>Setting up UI canvas for VR controllers</li>
-        </ul>
-        <h4>My role</h4>
-        <ul>
-          <li>VR interaction design</li>
-          <li>UI/UX implementation</li>
-          <li>Bridge between smart contract and the game</li>
-        </ul>
-      </aside>
-    </div>
+        <!-- VR Puzzles -->
+        <div class="project-row">
+          <a class="project-card" href="https://www.srmap.edu.in/news/patent-on-real-time-stress-analysis-for-emotional-and-cognitive-assessment/" target="_blank" rel="noopener">
+            <div class="media">
+              <img src="VR Puzzles.png" alt="VR Puzzles" />
+              <div class="view-overlay"><span>View Project</span></div>
+            </div>
+            <div class="content">
+              <h3 class="project-title">VR Puzzles</h3>
+              <p>3 VR puzzles designed to create confusion and test attention under pressure.</p>
+              <div class="tags">
+                <span>Unity 3D</span><span>C#</span><span>XR</span><span>EEG</span>
+              </div>
+            </div>
+          </a>
 
-    <!-- SCP Maze Runner -->
-    <div class="project-row reverse">
-      <a class="project-card" href="https://github.com/DakshKulkarni/Claustrophobia" target="_blank">
-        <div class="media">
-          <img src="SCP.png" alt="SCP Maze Runner" />
-          <div class="view-overlay"><span>View Project</span></div>
+          <aside class="project-info">
+            <h4>What I built</h4>
+            <ul>
+              <li>3 puzzle scenarios with increasing cognitive load</li>
+              <li>Interaction + UI feedback in VR</li>
+              <li>Research-ready flow for data collection</li>
+            </ul>
+            <h4>Impact</h4>
+            <ul>
+              <li>EEG data collected from 20+ participants</li>
+              <li>Built for research experimentation</li>
+              <li>Optimized for repeatable pilot sessions</li>
+            </ul>
+          </aside>
         </div>
-        <div class="content">
-          <h3 class="project-title">SCP Maze Runner</h3>
-          <p>VR horror with flickering lights & positional AI that chases when provoked.</p>
-          <div class="tags">
-            <span>Unity 3D</span><span>C#</span><span>XR Interaction Toolkit</span>
-          </div>
+
+        <!-- SCP Maze Runner -->
+        <div class="project-row reverse">
+          <a class="project-card" href="https://github.com/DakshKulkarni/Claustrophobia" target="_blank" rel="noopener">
+            <div class="media">
+              <img src="SCP.png" alt="SCP Maze Runner" />
+              <div class="view-overlay"><span>View Project</span></div>
+            </div>
+            <div class="content">
+              <h3 class="project-title">SCP Maze Runner</h3>
+              <p>VR horror with flickering lights & positional AI that chases when provoked.</p>
+              <div class="tags">
+                <span>Unity 3D</span><span>C#</span><span>XR Interaction Toolkit</span>
+              </div>
+            </div>
+          </a>
+
+          <aside class="project-info">
+            <h4>What I built</h4>
+            <ul>
+              <li>Dynamic lighting & audio atmosphere</li>
+              <li>AI movement and trigger reactions</li>
+              <li>Chase mechanics & player feedback</li>
+            </ul>
+            <h4>My role</h4>
+            <ul>
+              <li>VR interaction mechanics design</li>
+              <li>Character movement</li>
+              <li>AI behaviour handling</li>
+            </ul>
+          </aside>
         </div>
-      </a>
 
-      <aside class="project-info">
-        <h4>What I built</h4>
-        <ul>
-          <li>Dynamic lighting & audio atmosphere</li>
-          <li>AI movement and trigger reactions</li>
-          <li>Chase mechanics & player feedback</li>
-        </ul>
-        <h4>My role</h4>
-        <ul>
-          <li>VR interaction mechanics design</li>
-          <li>Character movement</li>
-          <li>AI behaviour handling</li>
-        </ul>
-      </aside>
-    </div>
+        <!-- Valak -->
+        <div class="project-row">
+          <a class="project-card" href="https://devfolio.co/projects/valak-82b3" target="_blank" rel="noopener">
+            <div class="media">
+              <img src="image.png" alt="Valak" />
+              <div class="view-overlay"><span>View Project</span></div>
+            </div>
+            <div class="content">
+              <h3 class="project-title">Valak (NFT Horror)</h3>
+              <p>Collect hidden shards with limited FOV; wallet + token mechanics unlock NFTs.</p>
+              <div class="tags">
+                <span>Unity 3D</span><span>C#</span><span>Thirdweb</span><span>Solidity</span>
+              </div>
+            </div>
+          </a>
 
-    <!-- Valak -->
-    <div class="project-row">
-      <a class="project-card" href="https://devfolio.co/projects/valak-82b3" target="_blank">
-        <div class="media">
-          <img src="image.png" alt="Valak" />
-          <div class="view-overlay"><span>View Project</span></div>
+          <aside class="project-info">
+            <h4>What I built</h4>
+            <ul>
+              <li>Dynamic speed tension loop</li>
+              <li>Collectible (token pipeline)</li>
+              <li>Metamask onboarding</li>
+            </ul>
+            <h4>My role</h4>
+            <ul>
+              <li>Gameplay systems & wallet integration</li>
+              <li>Thirdweb–Unity setup & UX polish</li>
+              <li>Scene setup</li>
+            </ul>
+          </aside>
         </div>
-        <div class="content">
-          <h3 class="project-title">Valak (NFT Horror)</h3>
-          <p>Collect hidden shards with limited FOV; wallet + token mechanics unlock NFTs.</p>
-          <div class="tags">
-            <span>Unity 3D</span><span>C#</span><span>Thirdweb</span><span>Solidity</span>
-          </div>
+
+        <!-- Thanos Simulator -->
+        <div class="project-row reverse">
+          <a class="project-card" href="https://wombatty.itch.io/avenge-infinite-war" target="_blank" rel="noopener">
+            <div class="media">
+              <img src="Thanos.png" alt="Thanos Simulator" />
+              <div class="view-overlay"><span>View Project</span></div>
+            </div>
+            <div class="content">
+              <h3 class="project-title">Thanos Simulator</h3>
+              <p>Planet-wise gravity with rocket movement and per-planet time bomb.</p>
+              <div class="tags">
+                <span>Unity 2D</span><span>C#</span>
+              </div>
+            </div>
+          </a>
+
+          <aside class="project-info">
+            <h4>What I built</h4>
+            <ul>
+              <li>Custom gravity per planet</li>
+              <li>Seamless controls & readable HUD</li>
+              <li>Time-bomb per planet</li>
+            </ul>
+            <h4>My role</h4>
+            <ul>
+              <li>Core physics</li>
+              <li>Planet movement logic</li>
+              <li>Game over logic</li>
+            </ul>
+          </aside>
         </div>
-      </a>
 
-      <aside class="project-info">
-        <h4>What I built</h4>
-        <ul>
-          <li>Dynamic speed tension loop</li>
-          <li>Collectible (token pipeline)</li>
-          <li>Metamask onboarding</li>
-        </ul>
-        <h4>My role</h4>
-        <ul>
-          <li>Gameplay systems & wallet integration</li>
-          <li>Thirdweb–Unity setup & UX polish</li>
-          <li>Setting up the game scene</li>
-        </ul>
-      </aside>
-    </div>
+      </div>
+    </section>
 
-    <!-- CryptFlesh -->
-    <div class="project-row reverse">
-      <a class="project-card" href="https://github.com/DakshKulkarni/first" target="_blank">
-        <div class="media">
-          <img src="Crypt.png" alt="CryptFlesh" />
-          <div class="view-overlay"><span>View Project</span></div>
-        </div>
-        <div class="content">
-          <h3 class="project-title">CryptFlesh (NFT Zombie Survival)</h3>
-          <p>Waves, weapons, and full-on apocalypse survival gameplay.</p>
-          <div class="tags">
-            <span>Unity 3D</span><span>C#</span><span>Thirdweb</span><span>Solidity</span>
-          </div>
-        </div>
-      </a>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <h1>Get In Touch</h1>
+      <div class="contact-grid">
 
-      <aside class="project-info">
-        <h4>What I built</h4>
-        <ul>
-          <li>Player animation using blend trees</li>
-          <li>Player movement and health bar</li>
-          <li>Wallet integration</li>
-        </ul>
-        <h4>My role</h4>
-        <ul>
-          <li>Gameplay loop</li>
-          <li>Zombie damage & horde management</li>
-          <li>Animation system</li>
-        </ul>
-      </aside>
-    </div>
+        <a href="mailto:dakshkulki04@gmail.com" class="contact-card">
+          <img src="Gmail.png" alt="Email" class="contact-icon" />
+          <span>Email</span>
+        </a>
 
-    <!-- Thanos Simulator -->
-    <div class="project-row">
-      <a class="project-card" href="https://wombatty.itch.io/avenge-infinite-war" target="_blank">
-        <div class="media">
-          <img src="Thanos.png" alt="Thanos Simulator" />
-          <div class="view-overlay"><span>View Project</span></div>
-        </div>
-        <div class="content">
-          <h3 class="project-title">Thanos Simulator</h3>
-          <p>Planet-wise gravity with rocket movement and per-planet time bomb.</p>
-          <div class="tags">
-            <span>Unity 2D</span><span>C#</span>
-          </div>
-        </div>
-      </a>
+        <a href="https://linkedin.com/in/daksh-kulkarni-425476253/" target="_blank" rel="noopener" class="contact-card">
+          <img src="Linkedin.png" alt="LinkedIn" class="contact-icon" />
+          <span>LinkedIn</span>
+        </a>
 
-      <aside class="project-info">
-        <h4>What I built</h4>
-        <ul>
-          <li>Custom gravity per planet</li>
-          <li>Seamless controls & readable HUD</li>
-          <li>Time-bomb per planet</li>
-        </ul>
-        <h4>My role</h4>
-        <ul>
-          <li>Core physics behind the game</li>
-          <li>Planet movement logic</li>
-          <li>Health and game over logic</li>
-        </ul>
-      </aside>
-    </div>
+        <a href="https://github.com/DakshKulkarni" target="_blank" rel="noopener" class="contact-card">
+          <img src="Github.png" alt="GitHub" class="contact-icon" />
+          <span>GitHub</span>
+        </a>
 
-  </div>
-</section>
+      </div>
+    </section>
 
-<section id="contact" class="contact-section">
-  <h1>Get In Touch</h1>
-  <div class="contact-grid">
-
-    <a href="mailto:dakshkulki04@gmail.com" target="_blank" class="contact-card">
-      <img src="Gmail.png" alt="Email" class="contact-icon" />
-      <span>Email</span>
-    </a>
-
-    <a href="https://linkedin.com/in/daksh-kulkarni-425476253/" target="_blank" class="contact-card">
-      <img src="Linkedin.png" alt="LinkedIn" class="contact-icon" />
-      <span>LinkedIn</span>
-    </a>
-
-    <a href="https://github.com/DakshKulkarni" target="_blank" class="contact-card">
-      <img src="Github.png" alt="GitHub" class="contact-icon" />
-      <span>GitHub</span>
-    </a>
-
-  </div>
-</section>
+  </div><!-- end #site -->
 
   <img id="rocketCursor" src="rocketcur.png" alt="cursor">
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- your JS -->
   <script src="app.js" defer></script>
 </body>
 </html>
