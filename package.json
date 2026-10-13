@@ -1,0 +1,12 @@
+{
+  "name": "daksh-gamedev-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Cinematic Unity and XR developer portfolio",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist",
+    "check": "node --check App.js && node --check scene.js && node scripts/check.mjs"
+  }
+}
